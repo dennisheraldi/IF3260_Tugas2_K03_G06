@@ -1,0 +1,169 @@
+* {
+    background-color: #0f172a;
+    font-family: Inter var, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+        sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+        Noto Color Emoji;
+}
+
+.body {
+    min-width: 750px;
+}
+
+.title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 2;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.card {
+    background-color: #1e293b;
+    border-radius: 0.5rem;
+    border: 0.1 solid #ccc;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    background-color: unset;
+}
+
+button {
+    background-color: #0ea5e9;
+    border: 0.1 solid #ccc;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #38bdf8;
+    color: #ffffff;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-item-left {
+    flex: 40%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#canvas {
+    margin: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.03);
+}
+
+.flex-item-right {
+    flex: 60%;
+}
+
+.tools-container {
+    margin-left: 1rem;
+}
+
+.inner-flex-container {
+    display: flex; /* membuat elemen .container menjadi flex box */
+    flex-wrap: wrap;
+    background-color: unset;
+}
+
+.inner-col-1,
+.inner-col-2,
+.inner-col-3 {
+    flex: 1; /* memberikan properti flex pada masing-masing kolom */
+    padding: 5px; /* memberikan padding pada masing-masing kolom */
+}
+
+.inner-card {
+    background-color: #11192c;
+    border-radius: 0.5rem;
+    border: 0.1 solid #ccc;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.03);
+    padding: 0.5rem;
+    margin-right: 1rem;
+}
+
+.col-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    background-color: unset;
+    text-align: center;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    color: #ffffff;
+}
+
+.slider-item {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.label {
+    margin-right: 10px;
+}
+
+.value {
+    margin-left: 1px;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+    .flex-item-right,
+    .flex-item-left {
+        flex: 100%;
+    }
+
+    .inner-col-1,
+    .inner-col-2,
+    .inner-col-3 {
+        flex: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .flex-item-left canvas {
+        width: 400px; /* set width to 400px */
+        height: 400px; /* set height to 400px */
+    }
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .flex-item-left canvas {
+        width: 300px; /* set width to 400px */
+        height: 300px; /* set height to 400px */
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+}
