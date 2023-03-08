@@ -132,8 +132,26 @@ button:hover {
     margin-left: 1px;
 }
 
-/* Responsive layout - makes a one column layout instead of a two-column layout */
-@media (max-width: 800px) {
+@media screen and (max-width: 1800px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .h2 {
+        font-size: 1.2rem;
+    }
+
+    .col-title {
+        font-size: 1rem;
+    }
+
+    .flex-item-left canvas {
+        width: 600px; /* set width to 400px */
+        height: 600px; /* set height to 400px */
+    }
+}
+
+@media screen and (max-width: 700px) {
     .flex-item-right,
     .flex-item-left {
         flex: 100%;
@@ -145,9 +163,6 @@ button:hover {
         flex: 100%;
         margin-bottom: 0.5rem;
     }
-}
-
-@media screen and (max-width: 700px) {
     .flex-item-left canvas {
         width: 400px; /* set width to 400px */
         height: 400px; /* set height to 400px */
