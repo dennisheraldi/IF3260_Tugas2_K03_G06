@@ -42,12 +42,12 @@ function main() {
         gl.clearColor(0, 0, 0, 1);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        // // Turn on culling. By default backfacing triangles
-        // // will be culled.
-        // gl.enable(gl.CULL_FACE);
+        // Turn on culling. By default backfacing triangles
+        // will be culled.
+        gl.enable(gl.CULL_FACE);
 
-        // // Enable the depth buffer
-        // gl.enable(gl.DEPTH_TEST);
+        // Enable the depth buffer
+        gl.enable(gl.DEPTH_TEST);
 
         // Use the program (shaders)
         gl.useProgram(program);
@@ -62,10 +62,10 @@ function main() {
         gl.uniformMatrix4fv(matrixUniformLocation, false, matrix);
 
         // Draw the model here
-        // for cube
-        for (var i = 0; i < cube_position.length; i++) {
-            setPositionColorBuffer(cube_position[i], cube_color[i]);
-            gl.drawArrays(gl.TRIANGLE_FAN, 0, cube_position[i].length / 3);
+        var model = hollowCube;
+        for (var i = 0; i < model.position.length; i++) {
+            setPositionColorBuffer(model.position[i], model.color[i]);
+            gl.drawArrays(gl.TRIANGLE_FAN, 0, model.position[i].length / 3);
         }
 
         window.requestAnimationFrame(drawScene);
