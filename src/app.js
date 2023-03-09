@@ -53,7 +53,15 @@ function main() {
         gl.useProgram(program);
 
         // Compute the matrix
-        var matrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+        // var matrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+        var left = -1;
+        var right = 1;
+        var bottom = -1;
+        var top = 1;
+        var near = 1;
+        var far = -1;
+        var matrix = m4.orthographic(left, right, bottom, top, near, far);
+
         matrix = m4.translate(matrix, translasi.x, translasi.y, translasi.z);
         matrix = m4.xRotate(matrix, degToRad(rotasi.x));
         matrix = m4.yRotate(matrix, degToRad(rotasi.y));
