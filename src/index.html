@@ -252,13 +252,16 @@
                                     <input
                                         id="camera-angle"
                                         type="range"
-                                        min="-1"
-                                        max="1"
-                                        step="0.001"
+                                        min="-360"
+                                        max="360"
+                                        step="1"
                                         value="0"
                                         class="slider"
+                                        oninput="document.getElementById('value-camera-angle').innerHTML = this.value;"
                                     />
-                                    <div class="value">0</div>
+                                    <div class="value" id="value-camera-angle">
+                                        0
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -280,6 +283,7 @@
         <script src="webgl/buffer.js"></script>
         <script src="utils/utils.js"></script>
         <script src="utils/mat.js"></script>
+        <script src="camera/camera.js"></script>
         <script src="app.js"></script>
     </body>
 </html>

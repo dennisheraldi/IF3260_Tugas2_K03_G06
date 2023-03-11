@@ -7,14 +7,17 @@ var rotasi = {
 // Event listener for rotasi
 document.getElementById("rotasi-x").addEventListener("input", (e) => {
     rotasi.x = e.target.value;
+    drawScene();
 });
 
 document.getElementById("rotasi-y").addEventListener("input", (e) => {
     rotasi.y = e.target.value;
+    drawScene();
 });
 
 document.getElementById("rotasi-z").addEventListener("input", (e) => {
     rotasi.z = e.target.value;
+    drawScene();
 });
 
 // Convert degree to radian
