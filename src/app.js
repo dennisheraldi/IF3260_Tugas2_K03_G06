@@ -60,7 +60,17 @@ function main() {
         var top = 1;
         var near = 1;
         var far = -1;
+
         var matrix = m4.orthographic(left, right, bottom, top, near, far);
+
+        if (document.getElementById("perspective").checked) {
+            matrix = m4.perspective(
+                degToRad(fieldOfView),
+                gl.canvas.width / gl.canvas.height,
+                0,
+                1
+            );
+        }
 
         matrix = m4.translate(matrix, translasi.x, translasi.y, translasi.z);
         matrix = m4.xRotate(matrix, degToRad(rotasi.x));

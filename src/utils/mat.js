@@ -1,22 +1,28 @@
 var m4 = {
+    // prettier-ignore
     orthographic: function (left, right, bottom, top, near, far) {
         return [
-            2 / (right - left),
-            0,
-            0,
-            0,
-            0,
-            2 / (top - bottom),
-            0,
-            0,
-            0,
-            0,
-            2 / (near - far),
-            0,
-            (left + right) / (left - right),
-            (bottom + top) / (bottom - top),
-            (near + far) / (near - far),
-            1,
+            2 / (right - left), 0, 0, 0,
+            0, 2 / (top - bottom), 0, 0,
+            0, 0, 2 / (near - far), 0,
+            (left + right) / (left - right), (bottom + top) / (bottom - top), (near + far) / (near - far), 1,
+        ];
+    },
+
+    // prettier-ignore
+    perspective: function (fieldOfViewInRadians, aspect, near, far) {
+        var f = Math.tan(Math.PI * 0.5 - 0.5 * fieldOfViewInRadians);
+        // var rangeInv = 1.0 / (near - far);
+
+        return [
+            // 1, 0, 0, 0, 
+            // 0, 1, 0, 0,
+            // 0, 0, 1, 0,
+            // 0, 0, 0 , 1,
+            f, 0, 0, 0, 
+            0, f, 0, 0,
+            0, 0, 1, 1,
+            0, 0, 0, 1,
         ];
     },
 
@@ -84,3 +90,7 @@ var m4 = {
         return m4.multiply(m, m4.scaling(sx, sy, sz));
     },
 };
+
+function degToRad(d) {
+    return (d * Math.PI) / 180;
+}

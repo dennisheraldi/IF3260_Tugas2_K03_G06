@@ -124,12 +124,41 @@ button:hover {
     margin: 10px;
 }
 
+label {
+    margin-right: 10px;
+    background-color: unset;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
 .label {
+    background-color: unset;
+    color: #ffffff;
     margin-right: 10px;
 }
 
 .value {
-    margin-left: 1px;
+    margin-left: 10px;
+    background-color: unset;
+    color: #ffffff;
+}
+
+.slider-view-field-container {
+    display: none;
+    flex-direction: row;
+    align-items: left;
+    margin-top: 1em;
+    background-color: unset;
+}
+
+input[type="radio"]:checked[value="perspective"]
+    ~ .slider-view-field-container {
+    display: block;
+}
+
+input[type="radio"] {
+    transform: scale(1.5); /* memperbesar radio button */
+    margin-right: 10px; /* menambahkan jarak antara radio button dan tulisan */
 }
 
 @media screen and (max-width: 1800px) {
