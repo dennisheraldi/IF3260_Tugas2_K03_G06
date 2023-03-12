@@ -1,3 +1,5 @@
+var isPerspective = false;
+
 const radioButtons = document.querySelectorAll(
     'input[type="radio"][name="projection"]'
 );
@@ -7,9 +9,11 @@ for (const radioButton of radioButtons) {
     radioButton.addEventListener("change", (event) => {
         if (event.target.value === "perspective") {
             sliderContainer.style.display = "flex";
+            isPerspective = true;
             drawScene();
         } else {
             sliderContainer.style.display = "none";
+            isPerspective = false;
             drawScene();
         }
     });
