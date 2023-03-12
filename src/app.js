@@ -49,19 +49,17 @@ function drawScene() {
     gl.useProgram(program);
 
     // Compute the matrix
-    // var matrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
-    var left = -1;
-    var right = 1;
-    var bottom = -1;
-    var top = 1;
-    var near = 1;
-    var far = -1;
-
-    var matrix = m4.orthographic(left, right, bottom, top, near, far);
+    var matrix = m4.orthographic(-1, 1, -1, 1, 1, -1);
 
     // Compute a matrix for the camera
     var cameraMatrix = m4.yRotation(cameraAngleRadians);
     cameraMatrix = m4.translate(cameraMatrix, 0, 0, 0);
+
+    // Get the camera's position from the matrix we computed
+    // var cameraPosition = [cameraMatrix[12], cameraMatrix[13], cameraMatrix[14]];
+
+    // Compute the camera's matrix using look at.
+    // cameraMatrix = m4.lookAt(cameraPosition, [0, 0, 1], [0, 1, 0]);
 
     // Make a view matrix from the camera matrix.
     var viewMatrix = m4.inverse(cameraMatrix);

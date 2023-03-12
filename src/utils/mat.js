@@ -12,13 +12,8 @@ var m4 = {
     // prettier-ignore
     perspective: function (fieldOfViewInRadians, aspect, near, far) {
         var f = Math.tan(Math.PI * 0.5 - 0.5 * fieldOfViewInRadians);
-        // var rangeInv = 1.0 / (near - far);
 
         return [
-            // 1, 0, 0, 0, 
-            // 0, 1, 0, 0,
-            // 0, 0, 1, 0,
-            // 0, 0, 0 , 1,
             f, 0, 0, 0, 
             0, f, 0, 0,
             0, 0, 1, 1,
@@ -220,6 +215,30 @@ var m4 = {
                     tmp_16 * m02 +
                     tmp_21 * m12 -
                     (tmp_20 * m12 + tmp_23 * m22 + tmp_17 * m02)),
+        ];
+    },
+    lookAt: function (cameraPosition, target, up) {
+        var zAxis = normalize(subtractVectors(cameraPosition, target));
+        var xAxis = normalize(cross(up, zAxis));
+        var yAxis = normalize(cross(zAxis, xAxis));
+
+        return [
+            xAxis[0],
+            xAxis[1],
+            xAxis[2],
+            0,
+            yAxis[0],
+            yAxis[1],
+            yAxis[2],
+            0,
+            zAxis[0],
+            zAxis[1],
+            zAxis[2],
+            0,
+            cameraPosition[0],
+            cameraPosition[1],
+            cameraPosition[2],
+            1,
         ];
     },
 };
