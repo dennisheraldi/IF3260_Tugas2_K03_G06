@@ -59,15 +59,6 @@ function drawScene() {
 
     var matrix = m4.orthographic(left, right, bottom, top, near, far);
 
-    if (document.getElementById("perspective").checked) {
-        matrix = m4.perspective(
-            degToRad(fieldOfView),
-            gl.canvas.width / gl.canvas.height,
-            0,
-            1
-        );
-    }
-
     // Compute a matrix for the camera
     var cameraMatrix = m4.yRotation(cameraAngleRadians);
     cameraMatrix = m4.translate(cameraMatrix, 0, 0, 0);
@@ -82,6 +73,16 @@ function drawScene() {
     matrix = m4.xRotate(matrix, degToRad(rotasi.x));
     matrix = m4.yRotate(matrix, degToRad(rotasi.y));
     matrix = m4.zRotate(matrix, degToRad(rotasi.z));
+
+    if (document.getElementById("perspective").checked) {
+        PerspectiveMatrix = m4.perspective(
+            degToRad(fieldOfView),
+            gl.canvas.width / gl.canvas.height,
+            0,
+            1
+        );
+        matrix = m4.multiply(matrix, PerspectiveMatrix);
+    }
 
     gl.uniformMatrix4fv(matrixUniformLocation, false, matrix);
 
