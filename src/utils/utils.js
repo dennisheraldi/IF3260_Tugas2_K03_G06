@@ -12,3 +12,10 @@ function centerOfMass(positions) {
         z: sum.z / (positions.length / 3),
     };
 }
+
+function hexToNormalizedRgb(colorHex) {
+    var r = parseInt(colorHex.slice(1, 3), 16) / 255;
+    var g = parseInt(colorHex.slice(3, 5), 16) / 255;
+    var b = parseInt(colorHex.slice(5, 7), 16) / 255;
+    return [r, g, b];
+}
