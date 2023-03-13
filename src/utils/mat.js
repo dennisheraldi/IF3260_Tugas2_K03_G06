@@ -10,7 +10,7 @@ var m4 = {
     },
 
     // prettier-ignore
-    perspective: function (fieldOfViewInRadians, aspect, near, far) {
+    perspective: function (fieldOfViewInRadians) {
         var f = Math.tan(Math.PI * 0.5 - 0.5 * fieldOfViewInRadians);
 
         return [
