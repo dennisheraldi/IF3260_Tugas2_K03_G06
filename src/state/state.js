@@ -1,5 +1,5 @@
 // Define the state of the app
-var state = {
+const initialState = {
     // Initial state
     model: hollowCube,
     projection_type: "orthographic", // "orthographic" or "perspective" or "oblique"
@@ -23,6 +23,8 @@ var state = {
     camera_radius: 0,
     camera_angle: 0,
 };
+
+var state = initialState;
 
 function updateState() {
     // state.model = ...
