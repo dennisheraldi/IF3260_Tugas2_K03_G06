@@ -18,9 +18,9 @@ const initialState = {
         z: 0,
     },
     scaling: {
-        x: 0,
-        y: 0,
-        z: 0,
+        x: 1,
+        y: 1,
+        z: 1,
     },
     camera_radius: 0,
     camera_angle: 0,
@@ -75,11 +75,11 @@ function resetState() {
     document.getElementById("translasi-z").value = state.translation.z;
     document.getElementById("value-translasi-z").innerHTML = state.translation.z;
     document.getElementById("scaling-x").value = state.scaling.x;
-    // document.getElementById("value-scaling-x").innerHTML = state.scaling.x;
+    document.getElementById("value-scaling-x").innerHTML = state.scaling.x;
     document.getElementById("scaling-y").value = state.scaling.y;
-    // document.getElementById("value-scaling-y").innerHTML = state.scaling.y;
+    document.getElementById("value-scaling-y").innerHTML = state.scaling.y;
     document.getElementById("scaling-z").value = state.scaling.z;
-    // document.getElementById("value-scaling-z").innerHTML = state.scaling.z;
+    document.getElementById("value-scaling-z").innerHTML = state.scaling.z;
     document.getElementById("camera-radius").value = state.camera_radius;
     // document.getElementById("value-camera-radius").innerHTML = state.camera_radius;
     document.getElementById("camera-angle").value = state.camera_angle;
