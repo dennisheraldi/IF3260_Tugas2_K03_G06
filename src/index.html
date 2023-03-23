@@ -57,8 +57,8 @@
                 <div class="h2 shading-title">Shading</div>
                 <div class="inner-flex-container">
                     <div class="toggle-switch">
-                        <input type="checkbox" id="switch" />
-                        <label for="switch"></label>
+                        <input type="checkbox" id="switch-shading" />
+                        <label for="switch-shading"></label>
                     </div>
                     <div class="on-off-label" id="on-off-label">OFF</div>
                 </div>
@@ -182,8 +182,24 @@
             </div>
             <div class="card">
                 <div class="h2">Tambahan</div>
-                <button>Bantuan</button>
-                <button>Reset</button>
+                <div class="inner-flex-container">
+                    <div class="inner-col-1 inner-card">
+                        <button>Bantuan</button>
+                        <button>Reset</button>
+                    </div>
+                    <div class="inner-col-2 inner-card">
+                        <div class="h2">Animation</div>
+                        <div class="inner-flex-container">
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="switch-animation" />
+                                <label for="switch-animation"></label>
+                            </div>
+                            <div class="on-off-label" id="on-off-label-animation">
+                                OFF
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -201,6 +217,7 @@
     <script src="utils/mat.js"></script>
     <script src="camera/camera.js"></script>
     <script src="app.js"></script>
+    <script src="animation/animation.js"></script>
 </body>
 
 </html>

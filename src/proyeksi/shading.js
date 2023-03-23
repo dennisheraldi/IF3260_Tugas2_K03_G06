@@ -1,6 +1,4 @@
-const toggleSwitch = document.querySelector(
-    '.toggle-switch input[type="checkbox"]'
-);
+const toggleSwitch = document.getElementById("switch-shading");
 toggleSwitch.addEventListener("change", function () {
     if (this.checked) {
         // do something when the switch is on
