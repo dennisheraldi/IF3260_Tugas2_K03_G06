@@ -119,6 +119,17 @@ function drawScene() {
             worldInverseTransposeMatrix,
             perspectiveMatrix
         );
+    } else if (state.projection_type === "oblique") {
+        var obliqueMatrix = m4.oblique(0.8, degToRad(45));
+        worldMatrix = m4.multiply(worldMatrix, obliqueMatrix);
+        worldViewProjectionMatrix = m4.multiply(
+            worldViewProjectionMatrix,
+            obliqueMatrix
+        );
+        worldInverseTransposeMatrix = m4.multiply(
+            worldInverseTransposeMatrix,
+            obliqueMatrix
+        );
     }
 
     // Set the matrices
