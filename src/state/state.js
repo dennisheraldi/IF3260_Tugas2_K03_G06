@@ -51,7 +51,6 @@ function updateState() {
     state.scaling.z = document.getElementById("scaling-z").value;
     state.camera_radius = document.getElementById("camera-radius").value;
     state.camera_angle = document.getElementById("camera-angle").value;
-    console.log(state)
 }
 
 function resetState() {

@@ -88,10 +88,10 @@ function drawScene() {
         state.translation.y,
         state.translation.z
     );
+    worldMatrix = m4.scale(worldMatrix, state.scaling.x, state.scaling.y, state.scaling.z);
     worldMatrix = m4.xRotate(worldMatrix, degToRad(state.rotation.x));
     worldMatrix = m4.yRotate(worldMatrix, degToRad(state.rotation.y));
     worldMatrix = m4.zRotate(worldMatrix, degToRad(state.rotation.z));
-    // TODO: Scaling matrix
 
     // Make a view matrix from the camera matrix.
     var viewMatrix = m4.inverse(cameraMatrix);
