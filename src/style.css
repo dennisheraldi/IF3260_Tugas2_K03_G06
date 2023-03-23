@@ -81,7 +81,8 @@ button:hover {
 }
 
 .inner-flex-container {
-    display: flex; /* membuat elemen .container menjadi flex box */
+    display: flex;
+    /* membuat elemen .container menjadi flex box */
     flex-wrap: wrap;
     background-color: unset;
 }
@@ -89,8 +90,10 @@ button:hover {
 .inner-col-1,
 .inner-col-2,
 .inner-col-3 {
-    flex: 1; /* memberikan properti flex pada masing-masing kolom */
-    padding: 5px; /* memberikan padding pada masing-masing kolom */
+    flex: 1;
+    /* memberikan properti flex pada masing-masing kolom */
+    padding: 5px;
+    /* memberikan padding pada masing-masing kolom */
 }
 
 .inner-card {
@@ -151,14 +154,31 @@ label {
     background-color: unset;
 }
 
-input[type="radio"]:checked[value="perspective"]
-    ~ .slider-view-field-container {
+.slider-f-factor-container {
+    display: none;
+    flex-direction: row;
+    align-items: left;
+    margin-top: 1em;
+    background-color: unset;
+}
+
+.slider-beta-angle-container {
+    display: none;
+    flex-direction: row;
+    align-items: left;
+    margin-top: 1em;
+    background-color: unset;
+}
+
+input[type="radio"]:checked[value="perspective"]~.slider-view-field-container {
     display: block;
 }
 
 input[type="radio"] {
-    transform: scale(1.5); /* memperbesar radio button */
-    margin-right: 10px; /* menambahkan jarak antara radio button dan tulisan */
+    transform: scale(1.5);
+    /* memperbesar radio button */
+    margin-right: 10px;
+    /* menambahkan jarak antara radio button dan tulisan */
 }
 
 .shading-title {
@@ -202,11 +222,11 @@ input[type="radio"] {
     transition: all 0.3s;
 }
 
-.toggle-switch input:checked + label {
+.toggle-switch input:checked+label {
     background-color: #2196f3;
 }
 
-.toggle-switch input:checked + label:after {
+.toggle-switch input:checked+label:after {
     transform: translateX(26px);
 }
 
@@ -232,12 +252,15 @@ input[type="radio"] {
     }
 
     .flex-item-left canvas {
-        width: 600px; /* set width to 400px */
-        height: 600px; /* set height to 400px */
+        width: 600px;
+        /* set width to 400px */
+        height: 600px;
+        /* set height to 400px */
     }
 }
 
 @media screen and (max-width: 700px) {
+
     .flex-item-right,
     .flex-item-left {
         flex: 100%;
@@ -249,10 +272,14 @@ input[type="radio"] {
         flex: 100%;
         margin-bottom: 0.5rem;
     }
+
     .flex-item-left canvas {
-        width: 400px; /* set width to 400px */
-        height: 400px; /* set height to 400px */
+        width: 400px;
+        /* set width to 400px */
+        height: 400px;
+        /* set height to 400px */
     }
+
     .title {
         font-size: 2rem;
     }
@@ -260,8 +287,10 @@ input[type="radio"] {
 
 @media screen and (max-width: 450px) {
     .flex-item-left canvas {
-        width: 300px; /* set width to 400px */
-        height: 300px; /* set height to 400px */
+        width: 300px;
+        /* set width to 400px */
+        height: 300px;
+        /* set height to 400px */
     }
 
     .title {

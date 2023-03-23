@@ -120,7 +120,7 @@ function drawScene() {
             perspectiveMatrix
         );
     } else if (state.projection_type === "oblique") {
-        var obliqueMatrix = m4.oblique(0.8, degToRad(45));
+        var obliqueMatrix = m4.oblique(state.f_factor, degToRad(state.beta_angle));
         worldMatrix = m4.multiply(worldMatrix, obliqueMatrix);
         worldViewProjectionMatrix = m4.multiply(
             worldViewProjectionMatrix,

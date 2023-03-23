@@ -42,6 +42,18 @@
                         oninput="document.getElementById('value-view-field').innerHTML = this.value;" />
                     <div class="value" id="value-view-field">90</div>
                 </div>
+                <div class="slider-f-factor-container">
+                    <div class="label">Foreshortening Factor:</div>
+                    <input type="range" id="f-factor" name="f-factor" min="0" max="1" step="0.01" value="0.5"
+                        oninput="document.getElementById('value-f-factor').innerHTML = this.value;" />
+                    <div class="value" id="value-f-factor">0.5</div>
+                </div>
+                <div class="slider-beta-angle-container">
+                    <div class="label">Beta Angle:</div>
+                    <input type="range" id="beta-angle" name="beta-angle" min="0" max="360" step="1" value="45"
+                        oninput="document.getElementById('value-beta-angle').innerHTML = this.value;" />
+                    <div class="value" id="value-beta-angle">45</div>
+                </div>
                 <div class="h2 shading-title">Shading</div>
                 <div class="inner-flex-container">
                     <div class="toggle-switch">

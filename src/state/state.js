@@ -32,6 +32,8 @@ function updateState() {
         'input[name="projection"]:checked'
     ).value;
     state.view_field = document.getElementById("view-field").value;
+    state.f_factor = document.getElementById("f-factor").value;
+    state.beta_angle = document.getElementById("beta-angle").value;
     state.is_shading = document.querySelector(
         '.toggle-switch input[type="checkbox"]'
     ).checked;
