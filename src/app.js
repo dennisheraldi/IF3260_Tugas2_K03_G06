@@ -75,12 +75,17 @@ function drawScene() {
     var projectionMatrix = m4.orthographic(-1, 1, -1, 1, 1, -1);
 
     // TODO: Compute a matrix for the camera
-    var cameraMatrix = m4.yRotation(cameraAngleRadians);
-    cameraMatrix = m4.translate(cameraMatrix, 0, 0, 0);
+    var cameraMatrix = m4.translation(0, 0, cameraRadius);
+    cameraMatrix = m4.yRotate(cameraMatrix, cameraAngleRadians);
     // Get the camera's position from the matrix we computed
     // var cameraPosition = [cameraMatrix[12], cameraMatrix[13], cameraMatrix[14]];
     // Compute the camera's matrix using look at.
     // cameraMatrix = m4.lookAt(cameraPosition, [0, 0, 1], [0, 1, 0]);
+    // Make a view matrix from the camera matrix.
+    var viewMatrix = m4.inverse(cameraMatrix);
+
+    // Compute a view projection matrix
+    var viewProjectionMatrix = m4.multiply(projectionMatrix, viewMatrix);
 
     // Compute a world matrix
     var worldMatrix = m4.translation(
@@ -92,12 +97,7 @@ function drawScene() {
     worldMatrix = m4.xRotate(worldMatrix, degToRad(state.rotation.x));
     worldMatrix = m4.yRotate(worldMatrix, degToRad(state.rotation.y));
     worldMatrix = m4.zRotate(worldMatrix, degToRad(state.rotation.z));
-
-    // Make a view matrix from the camera matrix.
-    var viewMatrix = m4.inverse(cameraMatrix);
-
-    // Compute a view projection matrix
-    var viewProjectionMatrix = m4.multiply(projectionMatrix, viewMatrix);
+    worldMatrix = m4.multiply(worldMatrix, viewProjectionMatrix)
 
     // Multiply the matrices.
     var worldViewProjectionMatrix = m4.multiply(
