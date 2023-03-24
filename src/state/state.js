@@ -1,7 +1,7 @@
 // Define the state of the app
 const initialState = {
     // Initial state
-    model: hollowCube,
+    model: takodachi,
     projection_type: "orthographic", // "orthographic" or "perspective" or "oblique"
     view_field: 90, // 0 - 180,
     f_factor: 0.5, // 0 - 1

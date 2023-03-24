@@ -59,6 +59,22 @@ var m4 = {
         return res;
     },
 
+    multiplyWithVertex: function (m, v) {
+        var res = [];
+        for (var i = 0; i < 4; ++i) {
+            var sum = 0.0;
+            for (var j = 0; j < 4; ++j) {
+                if (j < 3) {
+                    sum += m[i * 4 + j] * v[j];
+                } else {
+                    sum += m[i * 4 + j];
+                }
+            }
+            res.push(sum);
+        }
+        return res;
+    },
+
     translation: function (tx, ty, tz) {
         return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, tx, ty, tz, 1];
     },
@@ -179,65 +195,65 @@ var m4 = {
             d * t2,
             d * t3,
             d *
-                (tmp_1 * m10 +
-                    tmp_2 * m20 +
-                    tmp_5 * m30 -
-                    (tmp_0 * m10 + tmp_3 * m20 + tmp_4 * m30)),
+            (tmp_1 * m10 +
+                tmp_2 * m20 +
+                tmp_5 * m30 -
+                (tmp_0 * m10 + tmp_3 * m20 + tmp_4 * m30)),
             d *
-                (tmp_0 * m00 +
-                    tmp_7 * m20 +
-                    tmp_8 * m30 -
-                    (tmp_1 * m00 + tmp_6 * m20 + tmp_9 * m30)),
+            (tmp_0 * m00 +
+                tmp_7 * m20 +
+                tmp_8 * m30 -
+                (tmp_1 * m00 + tmp_6 * m20 + tmp_9 * m30)),
             d *
-                (tmp_3 * m00 +
-                    tmp_6 * m10 +
-                    tmp_11 * m30 -
-                    (tmp_2 * m00 + tmp_7 * m10 + tmp_10 * m30)),
+            (tmp_3 * m00 +
+                tmp_6 * m10 +
+                tmp_11 * m30 -
+                (tmp_2 * m00 + tmp_7 * m10 + tmp_10 * m30)),
             d *
-                (tmp_4 * m00 +
-                    tmp_9 * m10 +
-                    tmp_10 * m20 -
-                    (tmp_5 * m00 + tmp_8 * m10 + tmp_11 * m20)),
+            (tmp_4 * m00 +
+                tmp_9 * m10 +
+                tmp_10 * m20 -
+                (tmp_5 * m00 + tmp_8 * m10 + tmp_11 * m20)),
             d *
-                (tmp_12 * m13 +
-                    tmp_15 * m23 +
-                    tmp_16 * m33 -
-                    (tmp_13 * m13 + tmp_14 * m23 + tmp_17 * m33)),
+            (tmp_12 * m13 +
+                tmp_15 * m23 +
+                tmp_16 * m33 -
+                (tmp_13 * m13 + tmp_14 * m23 + tmp_17 * m33)),
             d *
-                (tmp_13 * m03 +
-                    tmp_18 * m23 +
-                    tmp_21 * m33 -
-                    (tmp_12 * m03 + tmp_19 * m23 + tmp_20 * m33)),
+            (tmp_13 * m03 +
+                tmp_18 * m23 +
+                tmp_21 * m33 -
+                (tmp_12 * m03 + tmp_19 * m23 + tmp_20 * m33)),
             d *
-                (tmp_14 * m03 +
-                    tmp_19 * m13 +
-                    tmp_22 * m33 -
-                    (tmp_15 * m03 + tmp_18 * m13 + tmp_23 * m33)),
+            (tmp_14 * m03 +
+                tmp_19 * m13 +
+                tmp_22 * m33 -
+                (tmp_15 * m03 + tmp_18 * m13 + tmp_23 * m33)),
             d *
-                (tmp_17 * m03 +
-                    tmp_20 * m13 +
-                    tmp_23 * m23 -
-                    (tmp_16 * m03 + tmp_21 * m13 + tmp_22 * m23)),
+            (tmp_17 * m03 +
+                tmp_20 * m13 +
+                tmp_23 * m23 -
+                (tmp_16 * m03 + tmp_21 * m13 + tmp_22 * m23)),
             d *
-                (tmp_14 * m22 +
-                    tmp_17 * m32 +
-                    tmp_13 * m12 -
-                    (tmp_16 * m32 + tmp_12 * m12 + tmp_15 * m22)),
+            (tmp_14 * m22 +
+                tmp_17 * m32 +
+                tmp_13 * m12 -
+                (tmp_16 * m32 + tmp_12 * m12 + tmp_15 * m22)),
             d *
-                (tmp_20 * m32 +
-                    tmp_12 * m02 +
-                    tmp_19 * m22 -
-                    (tmp_18 * m22 + tmp_21 * m32 + tmp_13 * m02)),
+            (tmp_20 * m32 +
+                tmp_12 * m02 +
+                tmp_19 * m22 -
+                (tmp_18 * m22 + tmp_21 * m32 + tmp_13 * m02)),
             d *
-                (tmp_18 * m12 +
-                    tmp_23 * m32 +
-                    tmp_15 * m02 -
-                    (tmp_22 * m32 + tmp_14 * m02 + tmp_19 * m12)),
+            (tmp_18 * m12 +
+                tmp_23 * m32 +
+                tmp_15 * m02 -
+                (tmp_22 * m32 + tmp_14 * m02 + tmp_19 * m12)),
             d *
-                (tmp_22 * m22 +
-                    tmp_16 * m02 +
-                    tmp_21 * m12 -
-                    (tmp_20 * m12 + tmp_23 * m22 + tmp_17 * m02)),
+            (tmp_22 * m22 +
+                tmp_16 * m02 +
+                tmp_21 * m12 -
+                (tmp_20 * m12 + tmp_23 * m22 + tmp_17 * m02)),
         ];
     },
     lookAt: function (cameraPosition, target, up) {
