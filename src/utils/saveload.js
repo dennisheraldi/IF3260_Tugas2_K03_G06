@@ -12,11 +12,21 @@ function save() {
         state.scaling.y,
         state.scaling.z
     );
-    transformation = m4.xRotate(transformation, degToRad(state.rotation.x));
-    transformation = m4.yRotate(transformation, degToRad(state.rotation.y));
-    transformation = m4.zRotate(transformation, degToRad(state.rotation.z));
-
-    console.log(transformation);
+    worldMatrix = m4.translate(
+        worldMatrix,
+        state.translation.x * -1,
+        state.translation.y * -1,
+        state.translation.z * -1
+    );
+    worldMatrix = m4.xRotate(worldMatrix, degToRad(state.rotation.x));
+    worldMatrix = m4.yRotate(worldMatrix, degToRad(state.rotation.y));
+    worldMatrix = m4.zRotate(worldMatrix, degToRad(state.rotation.z));
+    worldMatrix = m4.translate(
+        worldMatrix,
+        state.translation.x,
+        state.translation.y,
+        state.translation.z
+    );
 
     vertices = model.position;
     for (var i = 0; i < vertices.length; i++) {
