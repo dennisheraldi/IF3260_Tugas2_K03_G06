@@ -93,7 +93,12 @@ function drawScene() {
         state.translation.y,
         state.translation.z
     );
-    worldMatrix = m4.scale(worldMatrix, state.scaling.x, state.scaling.y, state.scaling.z);
+    worldMatrix = m4.scale(
+        worldMatrix,
+        state.scaling.x,
+        state.scaling.y,
+        state.scaling.z
+    );
     worldMatrix = m4.xRotate(worldMatrix, degToRad(state.rotation.x));
     worldMatrix = m4.yRotate(worldMatrix, degToRad(state.rotation.y));
     worldMatrix = m4.zRotate(worldMatrix, degToRad(state.rotation.z));
@@ -120,7 +125,10 @@ function drawScene() {
             perspectiveMatrix
         );
     } else if (state.projection_type === "oblique") {
-        var obliqueMatrix = m4.oblique(state.f_factor, degToRad(state.beta_angle));
+        var obliqueMatrix = m4.oblique(
+            state.f_factor,
+            degToRad(state.beta_angle)
+        );
         worldMatrix = m4.multiply(worldMatrix, obliqueMatrix);
         worldViewProjectionMatrix = m4.multiply(
             worldViewProjectionMatrix,
@@ -157,7 +165,7 @@ function drawScene() {
     gl.uniform3fv(reverseLightDirectionLocation, m4.normalize([0.5, 0.7, 1]));
 
     // Draw the model here
-    var model = hollowCube;
+    var model = takodachi;
     for (var i = 0; i < model.position.length; i++) {
         // Set position buffer
         setBuffer(
@@ -169,14 +177,18 @@ function drawScene() {
         );
 
         if (state.is_shading) {
+            // Calculate the normals
+            var normal = [];
+            var p1 = model.position[i].slice(0, 3);
+            var p2 = model.position[i].slice(3, 6);
+            var p3 = model.position[i].slice(6, 9);
+            var normalVect = normalVector(p1, p2, p3);
+            for (var j = 0; j < model.position[i].length / 3; j++) {
+                normal = normal.concat(normalVect);
+            }
+
             // Set normal buffer
-            setBuffer(
-                gl,
-                normalBuffer,
-                model.normal[i],
-                normalAttribLocation,
-                3
-            );
+            setBuffer(gl, normalBuffer, normal, normalAttribLocation, 3);
         } else {
             // Set color buffer
             setBuffer(gl, colorBuffer, model.color[i], colorAttribLocation, 3);
