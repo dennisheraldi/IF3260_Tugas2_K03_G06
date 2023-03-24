@@ -91,6 +91,18 @@ function resetState() {
 
 // set listener to reset-btn
 document.getElementById("reset-btn").addEventListener("click", (e) => {
+    const holder = state.model
     resetState();
+    state.model = holder
     drawScene();
+});
+
+models = [hollowCube, hollowPrism, takodachi]
+// set listener to model selection radio buttons
+var modelSelection = document.querySelectorAll('input[name="model"]');
+modelSelection.forEach((model) => {
+    model.addEventListener("change", (e) => {
+        state.model = models[e.target.value];
+        drawScene();
+    });
 });

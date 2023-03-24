@@ -57,9 +57,7 @@ function save() {
 async function load() {
     window.showOpenFilePicker().then(async (handle) => {
         const file = await handle[0].getFile();
-        console.log(file);
         const text = await file.text();
-        console.log(text);
         const model = JSON.parse(text);
         state.model = model;
         drawScene();
