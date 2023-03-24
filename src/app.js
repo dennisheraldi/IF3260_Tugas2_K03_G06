@@ -161,7 +161,7 @@ function drawScene() {
     gl.uniform3fv(reverseLightDirectionLocation, m4.normalize([0.5, 0.7, 1]));
 
     // Draw the model here
-    var model = takodachi;
+    var model = state.model;
     for (var i = 0; i < model.position.length; i++) {
         // Set position buffer
         setBuffer(
