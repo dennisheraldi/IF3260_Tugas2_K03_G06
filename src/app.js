@@ -95,9 +95,21 @@ function drawScene() {
         state.scaling.y,
         state.scaling.z
     );
+    worldMatrix = m4.translate(
+        worldMatrix,
+        state.translation.x * -1,
+        state.translation.y * -1,
+        state.translation.z * -1
+    );
     worldMatrix = m4.xRotate(worldMatrix, degToRad(state.rotation.x));
     worldMatrix = m4.yRotate(worldMatrix, degToRad(state.rotation.y));
     worldMatrix = m4.zRotate(worldMatrix, degToRad(state.rotation.z));
+    worldMatrix = m4.translate(
+        worldMatrix,
+        state.translation.x,
+        state.translation.y,
+        state.translation.z
+    );
     worldMatrix = m4.multiply(worldMatrix, viewProjectionMatrix)
 
     // Multiply the matrices.
