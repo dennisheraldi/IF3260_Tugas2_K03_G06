@@ -728,15 +728,35 @@ var takodachi = {
 }
 
 for (var i = 0; i < takodachi.position.length; i++) {
-    var r_color = Math.random();
-    var g_color = Math.random();
-    var b_color = Math.random();
-
-    // prettier-ignore
-    takodachi.color.push([
-        r_color, g_color, b_color,
-        r_color, g_color, b_color,
-        r_color, g_color, b_color,
-        r_color, g_color, b_color,
-    ]);
+    if (i < 58) {
+        // purple 122, 110, 134
+        var r_color = 122 / 255 + Math.random() / 10;
+        var g_color = 110 / 255 + Math.random() / 10;
+        var b_color = 134 / 255 + Math.random() / 10;
+    } else if (i < 88) {
+        // black 40, 35, 53
+        var r_color = 40 / 255 + Math.random() / 10;
+        var g_color = 35 / 255 + Math.random() / 10;
+        var b_color = 53 / 255 + Math.random() / 10;
+    } else {
+        // yellow 250, 181, 114
+        var r_color = 250 / 255 + Math.random() / 10;
+        var g_color = 181 / 255 + Math.random() / 10;
+        var b_color = 114 / 255 + Math.random() / 10;
+    }
+    if (takodachi.position[i].length == 12) {
+        // prettier-ignore
+        takodachi.color.push([
+            r_color, g_color, b_color,
+            r_color, g_color, b_color,
+            r_color, g_color, b_color,
+            r_color, g_color, b_color,
+        ]);
+    } else {
+        takodachi.color.push([
+            r_color, g_color, b_color,
+            r_color, g_color, b_color,
+            r_color, g_color, b_color,
+        ]);
+    }
 }
