@@ -68,11 +68,14 @@ function resetState() {
     document.getElementById("rotasi-z").value = state.rotation.z;
     document.getElementById("value-rotasi-z").innerHTML = state.rotation.z;
     document.getElementById("translasi-x").value = state.translation.x;
-    document.getElementById("value-translasi-x").innerHTML = state.translation.x;
+    document.getElementById("value-translasi-x").innerHTML =
+        state.translation.x;
     document.getElementById("translasi-y").value = state.translation.y;
-    document.getElementById("value-translasi-y").innerHTML = state.translation.y;
+    document.getElementById("value-translasi-y").innerHTML =
+        state.translation.y;
     document.getElementById("translasi-z").value = state.translation.z;
-    document.getElementById("value-translasi-z").innerHTML = state.translation.z;
+    document.getElementById("value-translasi-z").innerHTML =
+        state.translation.z;
     document.getElementById("scaling-x").value = state.scaling.x;
     document.getElementById("value-scaling-x").innerHTML = state.scaling.x;
     document.getElementById("scaling-y").value = state.scaling.y;
@@ -82,7 +85,8 @@ function resetState() {
     document.getElementById("camera-radius").value = state.camera_radius;
     // document.getElementById("value-camera-radius").innerHTML = state.camera_radius;
     document.getElementById("camera-angle").value = state.camera_angle;
-    document.getElementById("value-camera-angle").innerHTML = state.camera_angle;
+    document.getElementById("value-camera-angle").innerHTML =
+        state.camera_angle;
 }
 
 // set listener to reset-btn

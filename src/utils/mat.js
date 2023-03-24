@@ -59,6 +59,41 @@ var m4 = {
         return res;
     },
 
+    multiplyWithVertex: function (m, v) {
+        // Convert the flattened matrix to a 2D array
+        var matrix = [];
+        for (var i = 0; i < 4; i++) {
+            matrix.push(m.slice(i * 4, i * 4 + 4));
+        }
+
+        // Append 1 as the 4th component of the vector
+        v.push(1);
+
+        // Initialize the resulting vector with zeros
+        var result = [0, 0, 0];
+
+        // Iterate through each column of the matrix
+        for (var i = 0; i < 4; i++) {
+            // Calculate the dot product of the current column and the vector
+            var dotProduct =
+                matrix[0][i] * v[0] +
+                matrix[1][i] * v[1] +
+                matrix[2][i] * v[2] +
+                matrix[3][i] * v[3];
+
+            // Store the result in the corresponding component of the resulting vector
+            if (i < 3) {
+                result[i] = dotProduct;
+            }
+        }
+
+        // Remove the appended 1 from the vector
+        v.pop();
+
+        // Return the resulting vector
+        return result;
+    },
+
     translation: function (tx, ty, tz) {
         return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, tx, ty, tz, 1];
     },

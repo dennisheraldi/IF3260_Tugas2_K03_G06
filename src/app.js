@@ -77,10 +77,6 @@ function drawScene() {
     // TODO: Compute a matrix for the camera
     var cameraMatrix = m4.translation(0, 0, cameraRadius);
     cameraMatrix = m4.yRotate(cameraMatrix, cameraAngleRadians);
-    // Get the camera's position from the matrix we computed
-    // var cameraPosition = [cameraMatrix[12], cameraMatrix[13], cameraMatrix[14]];
-    // Compute the camera's matrix using look at.
-    // cameraMatrix = m4.lookAt(cameraPosition, [0, 0, 1], [0, 1, 0]);
     // Make a view matrix from the camera matrix.
     var viewMatrix = m4.inverse(cameraMatrix);
 
@@ -165,7 +161,7 @@ function drawScene() {
     gl.uniform3fv(reverseLightDirectionLocation, m4.normalize([0.5, 0.7, 1]));
 
     // Draw the model here
-    var model = hollowPrism;
+    var model = takodachi;
     for (var i = 0; i < model.position.length; i++) {
         // Set position buffer
         setBuffer(
