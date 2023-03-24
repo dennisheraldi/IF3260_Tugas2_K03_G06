@@ -12,17 +12,17 @@ function save() {
         state.scaling.y,
         state.scaling.z
     );
-    worldMatrix = m4.translate(
-        worldMatrix,
+    transformation = m4.translate(
+        transformation,
         state.translation.x * -1,
         state.translation.y * -1,
         state.translation.z * -1
     );
-    worldMatrix = m4.xRotate(worldMatrix, degToRad(state.rotation.x));
-    worldMatrix = m4.yRotate(worldMatrix, degToRad(state.rotation.y));
-    worldMatrix = m4.zRotate(worldMatrix, degToRad(state.rotation.z));
-    worldMatrix = m4.translate(
-        worldMatrix,
+    transformation = m4.xRotate(transformation, degToRad(state.rotation.x));
+    transformation = m4.yRotate(transformation, degToRad(state.rotation.y));
+    transformation = m4.zRotate(transformation, degToRad(state.rotation.z));
+    transformation = m4.translate(
+        transformation,
         state.translation.x,
         state.translation.y,
         state.translation.z

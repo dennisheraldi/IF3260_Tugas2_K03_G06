@@ -45,7 +45,7 @@ var m4 = {
     },
 
     multiply: function (a, b) {
-        // a and b are both 4x4 matrices stored in row major order.
+        // a and b are both 4x4 matrices stored in column major order.
         var res = [];
         for (var i = 0; i < 4; ++i) {
             for (var j = 0; j < 4; ++j) {
