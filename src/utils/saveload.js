@@ -16,10 +16,16 @@ function save() {
     transformation = m4.yRotate(transformation, degToRad(state.rotation.y));
     transformation = m4.zRotate(transformation, degToRad(state.rotation.z));
 
+    console.log(transformation);
+
     vertices = model.position;
     for (var i = 0; i < vertices.length; i++) {
         for (var j = 0; j < vertices[i].length; j = j + 3) {
-            var vertex = [vertices[i][j], vertices[i][j + 1], vertices[i][j + 2]];
+            var vertex = [
+                vertices[i][j],
+                vertices[i][j + 1],
+                vertices[i][j + 2],
+            ];
             var transformed = m4.multiplyWithVertex(transformation, vertex);
             vertices[i][j] = transformed[0];
             vertices[i][j + 1] = transformed[1];
@@ -27,13 +33,15 @@ function save() {
         }
     }
 
-    var blob = new Blob([JSON.stringify(model)], { type: "text/plain;charset=utf-8" });
+    var blob = new Blob([JSON.stringify(model)], {
+        type: "text/plain;charset=utf-8",
+    });
     var blobUrl = URL.createObjectURL(blob);
 
     var link = document.getElementById("downloader-link");
     link.href = blobUrl;
     link.download = "model.json";
-    document.querySelector('a').click()
+    document.querySelector("a").click();
 }
 
 async function load() {
@@ -50,4 +58,4 @@ async function load() {
 
 document.getElementById("save-btn").addEventListener("click", save);
 
-document.getElementById("load-btn").addEventListener("click", load)
+document.getElementById("load-btn").addEventListener("click", load);
