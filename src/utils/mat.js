@@ -328,6 +328,9 @@ var m4 = {
             m[15],
         ];
     },
+    identity: function () {
+        return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    },
 };
 
 function degToRad(d) {

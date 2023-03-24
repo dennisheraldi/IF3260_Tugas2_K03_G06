@@ -84,33 +84,46 @@ function drawScene() {
     var viewProjectionMatrix = m4.multiply(projectionMatrix, viewMatrix);
 
     // Compute a world matrix
-    var worldMatrix = m4.translation(
+    var worldMatrix = m4.identity();
+
+    if (state.model_type === "loaded") {
+        worldMatrix = m4.translate(
+            worldMatrix,
+            state.center_points[0] * -1,
+            state.center_points[1] * -1,
+            state.center_points[2] * -1
+        );
+    }
+
+    worldMatrix = m4.xRotate(worldMatrix, degToRad(state.rotation.x));
+    worldMatrix = m4.yRotate(worldMatrix, degToRad(state.rotation.y));
+    worldMatrix = m4.zRotate(worldMatrix, degToRad(state.rotation.z));
+
+    if (state.model_type === "loaded") {
+        var centerPoints = centerOfMass(state.model.position);
+        worldMatrix = m4.translate(
+            worldMatrix,
+            state.center_points[0],
+            state.center_points[1],
+            state.center_points[2]
+        );
+    }
+
+    worldMatrix = m4.translate(
+        worldMatrix,
         state.translation.x,
         state.translation.y,
         state.translation.z
     );
+
     worldMatrix = m4.scale(
         worldMatrix,
         state.scaling.x,
         state.scaling.y,
         state.scaling.z
     );
-    worldMatrix = m4.translate(
-        worldMatrix,
-        state.translation.x * -1,
-        state.translation.y * -1,
-        state.translation.z * -1
-    );
-    worldMatrix = m4.xRotate(worldMatrix, degToRad(state.rotation.x));
-    worldMatrix = m4.yRotate(worldMatrix, degToRad(state.rotation.y));
-    worldMatrix = m4.zRotate(worldMatrix, degToRad(state.rotation.z));
-    worldMatrix = m4.translate(
-        worldMatrix,
-        state.translation.x,
-        state.translation.y,
-        state.translation.z
-    );
-    worldMatrix = m4.multiply(worldMatrix, viewProjectionMatrix)
+
+    worldMatrix = m4.multiply(worldMatrix, viewProjectionMatrix);
 
     // Multiply the matrices.
     var worldViewProjectionMatrix = m4.multiply(

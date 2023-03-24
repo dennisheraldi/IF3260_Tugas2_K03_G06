@@ -2,6 +2,7 @@
 const initialState = {
     // Initial state
     model: hollowCube,
+    model_type: "preserved",
     projection_type: "orthographic", // "orthographic" or "perspective" or "oblique"
     view_field: 90, // 0 - 180,
     f_factor: 0.5, // 0 - 1
@@ -24,13 +25,13 @@ const initialState = {
     },
     camera_radius: 0,
     camera_angle: 0,
+    center_points: [0, 0, 0],
 };
 
 // freeze initialState
 var state = JSON.parse(JSON.stringify(initialState));
 
 function updateState() {
-    // state.model = ...
     state.projection_type = document.querySelector(
         'input[name="projection"]:checked'
     ).value;
@@ -91,18 +92,19 @@ function resetState() {
 
 // set listener to reset-btn
 document.getElementById("reset-btn").addEventListener("click", (e) => {
-    const holder = state.model
+    const holder = state.model;
     resetState();
-    state.model = holder
+    state.model = holder;
     drawScene();
 });
 
-models = [hollowCube, hollowPrism, takodachi]
+models = [hollowCube, hollowPrism, takodachi];
 // set listener to model selection radio buttons
 var modelSelection = document.querySelectorAll('input[name="model"]');
 modelSelection.forEach((model) => {
     model.addEventListener("change", (e) => {
         state.model = models[e.target.value];
+        state.model_type = "preserved";
         drawScene();
     });
 });

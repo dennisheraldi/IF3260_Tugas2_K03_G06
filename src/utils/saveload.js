@@ -1,31 +1,44 @@
 function save() {
     model = JSON.parse(JSON.stringify(state.model));
 
-    var transformation = m4.translation(
+    transformation = m4.identity();
+
+    if (state.model_type === "loaded") {
+        var centerPoints = centerOfMass(state.model.position);
+        transformation = m4.translate(
+            transformation,
+            centerPoints[0] * -1,
+            centerPoints[1] * -1,
+            centerPoints[2] * -1
+        );
+    }
+
+    transformation = m4.xRotate(transformation, degToRad(state.rotation.x));
+    transformation = m4.yRotate(transformation, degToRad(state.rotation.y));
+    transformation = m4.zRotate(transformation, degToRad(state.rotation.z));
+
+    if (state.model_type === "loaded") {
+        var centerPoints = centerOfMass(state.model.position);
+        transformation = m4.translate(
+            transformation,
+            centerPoints[0],
+            centerPoints[1],
+            centerPoints[2]
+        );
+    }
+
+    transformation = m4.translate(
+        transformation,
         state.translation.x,
         state.translation.y,
         state.translation.z
     );
+
     transformation = m4.scale(
         transformation,
         state.scaling.x,
         state.scaling.y,
         state.scaling.z
-    );
-    transformation = m4.translate(
-        transformation,
-        state.translation.x * -1,
-        state.translation.y * -1,
-        state.translation.z * -1
-    );
-    transformation = m4.xRotate(transformation, degToRad(state.rotation.x));
-    transformation = m4.yRotate(transformation, degToRad(state.rotation.y));
-    transformation = m4.zRotate(transformation, degToRad(state.rotation.z));
-    transformation = m4.translate(
-        transformation,
-        state.translation.x,
-        state.translation.y,
-        state.translation.z
     );
 
     vertices = model.position;
@@ -60,6 +73,8 @@ async function load() {
         const text = await file.text();
         const model = JSON.parse(text);
         state.model = model;
+        state.model_type = "loaded";
+        state.center_points = centerOfMass(state.model.position);
         drawScene();
     });
 }
