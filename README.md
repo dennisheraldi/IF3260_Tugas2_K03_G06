@@ -1,5 +1,12 @@
 # WebGL 3D Hollow Object
 
+![image](https://user-images.githubusercontent.com/71638224/227724865-617a32bf-511d-4c6f-9420-cc5d87567b4e.png)
+|![image](https://user-images.githubusercontent.com/71638224/227724912-851f8fbd-d43e-430d-b277-655b20663987.png)   |  ![image](https://user-images.githubusercontent.com/71638224/227724972-9dfd13f3-bb1e-4a9b-98d6-e880fbe9b1e4.png) |
+|---|---|
+
+## Demo
+![image](https://user-images.githubusercontent.com/71638224/227726019-6bdcbefa-7e39-4770-9cdf-2acb56f1d271.gif)
+
 ## Description
 
 This program is an implementation of 3D rendering using WebGL. The program is able to render 3D models with different projections, shading, and other parameters. The program is also able to load and save models from JSON files. Here are the detailed features:
