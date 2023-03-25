@@ -170,7 +170,8 @@ label {
     background-color: unset;
 }
 
-input[type="radio"]:checked[value="perspective"]~.slider-view-field-container {
+input[type="radio"]:checked[value="perspective"]
+    ~ .slider-view-field-container {
     display: block;
 }
 
@@ -222,11 +223,11 @@ input[type="radio"] {
     transition: all 0.3s;
 }
 
-.toggle-switch input:checked+label {
+.toggle-switch input:checked + label {
     background-color: #2196f3;
 }
 
-.toggle-switch input:checked+label:after {
+.toggle-switch input:checked + label:after {
     transform: translateX(26px);
 }
 
@@ -236,6 +237,47 @@ input[type="radio"] {
     color: #ffffff;
     font-size: 20px;
     font-weight: 500;
+}
+
+.modal {
+    display: none; /* Sembunyikan modal box secara default */
+    position: fixed; /* Positikan modal box secara tetap pada posisi tertentu */
+    z-index: 1; /* Atur z-index untuk memastikan modal box tampil di atas halaman web */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Aktifkan scroll jika konten melebihi area viewport */
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.4
+    ); /* Tambahkan latar belakang semi-transparan */
+}
+
+.modal-content {
+    background-color: #1e293b;
+    margin: 10% auto; /* Atur jarak modal box dari atas dan bawah halaman */
+    border-radius: 0.5rem;
+    border: 0.1 solid #ccc;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    width: 80%; /* Atur lebar konten modal box */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1800px) {
@@ -260,7 +302,6 @@ input[type="radio"] {
 }
 
 @media screen and (max-width: 700px) {
-
     .flex-item-right,
     .flex-item-left {
         flex: 100%;
