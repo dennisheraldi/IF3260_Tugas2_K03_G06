@@ -1,409 +1,296 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>3D WebGL Hollow Object</title>
-        <link rel="stylesheet" href="style.css" />
-    </head>
 
-    <body>
-        <div class="title">3D WebGL Hollow Object</div>
-        <div class="flex-container">
-            <div class="flex-item-left">
-                <canvas
-                    id="canvas"
-                    width="700px"
-                    height="700px"
-                    style="border: 1px solid black"
-                >
-                    Browser tidak mendukung WebGL
-                </canvas>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D WebGL Hollow Object</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="title">3D WebGL Hollow Object</div>
+    <div class="flex-container">
+        <div class="flex-item-left">
+            <canvas id="canvas" width="700px" height="700px" style="border: 1px solid black">
+                Browser tidak mendukung WebGL
+            </canvas>
+        </div>
+        <div class="flex-item-right">
+            <div class="card">
+                <div class="h2">Load Model</div>
+                <label>
+                    <input type="radio" name="model" value="0" checked id="cube" />
+                    Hollow Cube
+                </label>
+                <label>
+                    <input type="radio" name="model" value="1" id="prism" />
+                    Hollow Prism
+                </label>
+                <label>
+                    <input type="radio" name="model" value="2" id="takodachi" />
+                    Takodachi
+                </label>
+                <button id="load-btn">Buka dari file</button>
             </div>
-            <div class="flex-item-right">
-                <div class="card">
-                    <div class="h2">Load Model</div>
-                    <label>
-                        <input
-                            type="radio"
-                            name="model"
-                            value="0"
-                            checked
-                            id="cube"
-                        />
-                        Hollow Cube
-                    </label>
-                    <label>
-                        <input type="radio" name="model" value="1" id="prism" />
-                        Hollow Prism
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="model"
-                            value="2"
-                            id="takodachi"
-                        />
-                        Takodachi
-                    </label>
-                    <button id="load-btn">Buka dari file</button>
-                </div>
-                <div class="card">
-                    <div class="h2">Proyeksi</div>
-                    <label>
-                        <input
-                            type="radio"
-                            name="projection"
-                            value="orthographic"
-                            checked
-                            id="orthographic"
-                        />
-                        Orthographic
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="projection"
-                            value="perspective"
-                            id="perspective"
-                        />
-                        Perspective
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="projection"
-                            value="oblique"
-                            id="oblique"
-                        />
-                        Oblique
-                    </label>
+            <div class="card">
+                <div class="h2">Proyeksi</div>
+                <label>
+                    <input type="radio" name="projection" value="orthographic" checked id="orthographic" />
+                    Orthographic
+                </label>
+                <label>
+                    <input type="radio" name="projection" value="perspective" id="perspective" />
+                    Perspective
+                </label>
+                <label>
+                    <input type="radio" name="projection" value="oblique" id="oblique" />
+                    Oblique
+                </label>
 
-                    <div class="slider-view-field-container">
-                        <div class="label">Field of View:</div>
-                        <input
-                            type="range"
-                            id="view-field"
-                            name="view-field"
-                            min="0"
-                            max="180"
-                            step="1"
-                            value="90"
-                            oninput="document.getElementById('value-view-field').innerHTML = this.value;"
-                        />
-                        <div class="value" id="value-view-field">90</div>
-                    </div>
-                    <div class="slider-f-factor-container">
-                        <div class="label">Foreshortening Factor:</div>
-                        <input
-                            type="range"
-                            id="f-factor"
-                            name="f-factor"
-                            min="0"
-                            max="1"
-                            step="0.01"
-                            value="0.5"
-                            oninput="document.getElementById('value-f-factor').innerHTML = this.value;"
-                        />
-                        <div class="value" id="value-f-factor">0.5</div>
-                    </div>
-                    <div class="slider-beta-angle-container">
-                        <div class="label">Beta Angle:</div>
-                        <input
-                            type="range"
-                            id="beta-angle"
-                            name="beta-angle"
-                            min="0"
-                            max="360"
-                            step="1"
-                            value="45"
-                            oninput="document.getElementById('value-beta-angle').innerHTML = this.value;"
-                        />
-                        <div class="value" id="value-beta-angle">45</div>
-                    </div>
-                    <div class="h2 shading-title">Shading</div>
-                    <div class="inner-flex-container">
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="switch-shading" />
-                            <label for="switch-shading"></label>
-                        </div>
-                        <div class="on-off-label" id="on-off-label">OFF</div>
-                    </div>
+                <div class="slider-view-field-container">
+                    <div class="label">Field of View:</div>
+                    <input type="range" id="view-field" name="view-field" min="0" max="180" step="1" value="90"
+                        oninput="document.getElementById('value-view-field').innerHTML = this.value;" />
+                    <div class="value" id="value-view-field">90</div>
                 </div>
-                <div class="card">
-                    <div class="h2">Transformasi</div>
-                    <div class="inner-flex-container">
-                        <div class="inner-col-1 inner-card">
-                            <div class="col-title">Translasi</div>
-                            <div class="slider-container">
-                                <div class="slider-item">
-                                    <div class="label">x:</div>
-                                    <input
-                                        id="translasi-x"
-                                        type="range"
-                                        min="-1"
-                                        max="1"
-                                        step="0.001"
-                                        value="0"
-                                        class="slider"
-                                        oninput="document.getElementById('value-translasi-x').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-translasi-x">
-                                        0
-                                    </div>
+                <div class="slider-f-factor-container">
+                    <div class="label">Foreshortening Factor:</div>
+                    <input type="range" id="f-factor" name="f-factor" min="0" max="1" step="0.01" value="0.5"
+                        oninput="document.getElementById('value-f-factor').innerHTML = this.value;" />
+                    <div class="value" id="value-f-factor">0.5</div>
+                </div>
+                <div class="slider-beta-angle-container">
+                    <div class="label">Beta Angle:</div>
+                    <input type="range" id="beta-angle" name="beta-angle" min="0" max="360" step="1" value="45"
+                        oninput="document.getElementById('value-beta-angle').innerHTML = this.value;" />
+                    <div class="value" id="value-beta-angle">45</div>
+                </div>
+                <div class="h2 shading-title">Shading</div>
+                <div class="inner-flex-container">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="switch-shading" />
+                        <label for="switch-shading"></label>
+                    </div>
+                    <div class="on-off-label" id="on-off-label">OFF</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="h2">Transformasi</div>
+                <div class="inner-flex-container">
+                    <div class="inner-col-1 inner-card">
+                        <div class="col-title">Translasi</div>
+                        <div class="slider-container">
+                            <div class="slider-item">
+                                <div class="label">x:</div>
+                                <input id="translasi-x" type="range" min="-1" max="1" step="0.001" value="0"
+                                    class="slider"
+                                    oninput="document.getElementById('value-translasi-x').innerHTML = this.value;" />
+                                <div class="value" id="value-translasi-x">
+                                    0
                                 </div>
-                                <div class="slider-item">
-                                    <div class="label">y:</div>
-                                    <input
-                                        id="translasi-y"
-                                        type="range"
-                                        min="-1"
-                                        max="1"
-                                        step="0.001"
-                                        value="0"
-                                        class="slider"
-                                        oninput="document.getElementById('value-translasi-y').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-translasi-y">
-                                        0
-                                    </div>
+                            </div>
+                            <div class="slider-item">
+                                <div class="label">y:</div>
+                                <input id="translasi-y" type="range" min="-1" max="1" step="0.001" value="0"
+                                    class="slider"
+                                    oninput="document.getElementById('value-translasi-y').innerHTML = this.value;" />
+                                <div class="value" id="value-translasi-y">
+                                    0
                                 </div>
-                                <div class="slider-item">
-                                    <div class="label">z:</div>
-                                    <input
-                                        id="translasi-z"
-                                        type="range"
-                                        min="-1"
-                                        max="1"
-                                        step="0.001"
-                                        value="0"
-                                        class="slider"
-                                        oninput="document.getElementById('value-translasi-z').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-translasi-z">
-                                        0
-                                    </div>
+                            </div>
+                            <div class="slider-item">
+                                <div class="label">z:</div>
+                                <input id="translasi-z" type="range" min="-1" max="1" step="0.001" value="0"
+                                    class="slider"
+                                    oninput="document.getElementById('value-translasi-z').innerHTML = this.value;" />
+                                <div class="value" id="value-translasi-z">
+                                    0
                                 </div>
                             </div>
                         </div>
-                        <div class="inner-col-2 inner-card">
-                            <div class="col-title">Rotasi</div>
-                            <div class="slider-container">
-                                <div class="slider-item">
-                                    <div class="label">x:</div>
-                                    <input
-                                        id="rotasi-x"
-                                        type="range"
-                                        min="-360"
-                                        max="360"
-                                        step="1"
-                                        value="0"
-                                        class="slider"
-                                        oninput="document.getElementById('value-rotasi-x').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-rotasi-x">
-                                        0
-                                    </div>
+                    </div>
+                    <div class="inner-col-2 inner-card">
+                        <div class="col-title">Rotasi</div>
+                        <div class="slider-container">
+                            <div class="slider-item">
+                                <div class="label">x:</div>
+                                <input id="rotasi-x" type="range" min="-360" max="360" step="1" value="0" class="slider"
+                                    oninput="document.getElementById('value-rotasi-x').innerHTML = this.value;" />
+                                <div class="value" id="value-rotasi-x">
+                                    0
                                 </div>
-                                <div class="slider-item">
-                                    <div class="label">y:</div>
-                                    <input
-                                        id="rotasi-y"
-                                        type="range"
-                                        min="-360"
-                                        max="360"
-                                        step="1"
-                                        value="0"
-                                        class="slider"
-                                        oninput="document.getElementById('value-rotasi-y').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-rotasi-y">
-                                        0
-                                    </div>
+                            </div>
+                            <div class="slider-item">
+                                <div class="label">y:</div>
+                                <input id="rotasi-y" type="range" min="-360" max="360" step="1" value="0" class="slider"
+                                    oninput="document.getElementById('value-rotasi-y').innerHTML = this.value;" />
+                                <div class="value" id="value-rotasi-y">
+                                    0
                                 </div>
-                                <div class="slider-item">
-                                    <div class="label">z:</div>
-                                    <input
-                                        id="rotasi-z"
-                                        type="range"
-                                        min="-360"
-                                        max="360"
-                                        step="1"
-                                        value="0"
-                                        class="slider"
-                                        oninput="document.getElementById('value-rotasi-z').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-rotasi-z">
-                                        0
-                                    </div>
+                            </div>
+                            <div class="slider-item">
+                                <div class="label">z:</div>
+                                <input id="rotasi-z" type="range" min="-360" max="360" step="1" value="0" class="slider"
+                                    oninput="document.getElementById('value-rotasi-z').innerHTML = this.value;" />
+                                <div class="value" id="value-rotasi-z">
+                                    0
                                 </div>
                             </div>
                         </div>
-                        <div class="inner-col-3 inner-card">
-                            <div class="col-title">Scaling</div>
-                            <div class="slider-container">
-                                <div class="slider-item">
-                                    <div class="label">x:</div>
-                                    <input
-                                        id="scaling-x"
-                                        type="range"
-                                        min="0"
-                                        max="5"
-                                        step="0.01"
-                                        value="1"
-                                        class="slider"
-                                        oninput="document.getElementById('value-scaling-x').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-scaling-x">
-                                        1
-                                    </div>
+                    </div>
+                    <div class="inner-col-3 inner-card">
+                        <div class="col-title">Scaling</div>
+                        <div class="slider-container">
+                            <div class="slider-item">
+                                <div class="label">x:</div>
+                                <input id="scaling-x" type="range" min="0" max="5" step="0.01" value="1" class="slider"
+                                    oninput="document.getElementById('value-scaling-x').innerHTML = this.value;" />
+                                <div class="value" id="value-scaling-x">
+                                    1
                                 </div>
-                                <div class="slider-item">
-                                    <div class="label">y:</div>
-                                    <input
-                                        id="scaling-y"
-                                        type="range"
-                                        min="0"
-                                        max="5"
-                                        step="0.01"
-                                        value="1"
-                                        class="slider"
-                                        oninput="document.getElementById('value-scaling-y').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-scaling-y">
-                                        1
-                                    </div>
+                            </div>
+                            <div class="slider-item">
+                                <div class="label">y:</div>
+                                <input id="scaling-y" type="range" min="0" max="5" step="0.01" value="1" class="slider"
+                                    oninput="document.getElementById('value-scaling-y').innerHTML = this.value;" />
+                                <div class="value" id="value-scaling-y">
+                                    1
                                 </div>
-                                <div class="slider-item">
-                                    <div class="label">z:</div>
-                                    <input
-                                        id="scaling-z"
-                                        type="range"
-                                        min="0"
-                                        max="5"
-                                        step="0.01"
-                                        value="1"
-                                        class="slider"
-                                        oninput="document.getElementById('value-scaling-z').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-scaling-z">
-                                        1
-                                    </div>
+                            </div>
+                            <div class="slider-item">
+                                <div class="label">z:</div>
+                                <input id="scaling-z" type="range" min="0" max="5" step="0.01" value="1" class="slider"
+                                    oninput="document.getElementById('value-scaling-z').innerHTML = this.value;" />
+                                <div class="value" id="value-scaling-z">
+                                    1
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="h2">Atur Kamera</div>
-                    <div class="inner-flex-container">
-                        <div class="inner-col-1 inner-card">
-                            <div class="col-title">Radius</div>
-                            <div class="slider-container">
-                                <div class="slider-item">
-                                    <input
-                                        id="camera-radius"
-                                        type="range"
-                                        min="-5"
-                                        max="5"
-                                        step="0.005"
-                                        value="0"
-                                        class="slider"
-                                        oninput="document.getElementById('value-camera-radius').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-camera-radius">
-                                        -1
-                                    </div>
+            </div>
+            <div class="card">
+                <div class="h2">Atur Kamera</div>
+                <div class="inner-flex-container">
+                    <div class="inner-col-1 inner-card">
+                        <div class="col-title">Radius</div>
+                        <div class="slider-container">
+                            <div class="slider-item">
+                                <input id="camera-radius" type="range" min="-5" max="5" step="0.005" value="0"
+                                    class="slider"
+                                    oninput="document.getElementById('value-camera-radius').innerHTML = this.value;" />
+                                <div class="value" id="value-camera-radius">
+                                    -1
                                 </div>
                             </div>
                         </div>
-                        <div class="inner-col-2 inner-card">
-                            <div class="col-title">Angle</div>
-                            <div class="slider-container">
-                                <div class="slider-item">
-                                    <input
-                                        id="camera-angle"
-                                        type="range"
-                                        min="-360"
-                                        max="360"
-                                        step="1"
-                                        value="0"
-                                        class="slider"
-                                        oninput="document.getElementById('value-camera-angle').innerHTML = this.value;"
-                                    />
-                                    <div class="value" id="value-camera-angle">
-                                        0
-                                    </div>
+                    </div>
+                    <div class="inner-col-2 inner-card">
+                        <div class="col-title">Angle</div>
+                        <div class="slider-container">
+                            <div class="slider-item">
+                                <input id="camera-angle" type="range" min="-360" max="360" step="1" value="0"
+                                    class="slider"
+                                    oninput="document.getElementById('value-camera-angle').innerHTML = this.value;" />
+                                <div class="value" id="value-camera-angle">
+                                    0
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="h2">Save Model</div>
-                    <button id="save-btn">Save</button>
-                    <a href="" id="downloader-link"></a>
-                </div>
-                <div class="card">
-                    <div class="h2">Tambahan</div>
-                    <div class="inner-flex-container">
-                        <div class="inner-col-1 inner-card">
-                            <button id="bantuan">Bantuan</button>
-                            <button id="reset-btn">Reset</button>
-                        </div>
-                        <div class="modal">
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <div class="h2">
-                                    Panduan Penggunaan 3D WebGL Hollow Object
-                                </div>
-                                <div class="text">
-                                    Ini adalah panduan penggunaan
-                                </div>
+            </div>
+            <div class="card">
+                <div class="h2">Save Model</div>
+                <button id="save-btn">Save</button>
+                <a href="" id="downloader-link"></a>
+            </div>
+            <div class="card">
+                <div class="h2">Tambahan</div>
+                <div class="inner-flex-container">
+                    <div class="inner-col-1 inner-card">
+                        <button id="bantuan">Bantuan</button>
+                        <button id="reset-btn">Reset</button>
+                    </div>
+                    <div class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <div class="h2">
+                                Panduan Penggunaan 3D WebGL Hollow Object
                             </div>
-                        </div>
+                            <div class="text">
+                                1. Load Model
+                                Anda dapat memilih dari model yang tersedia yaitu Hollow Cube, Hollow Prism, dan
+                                Takodachi, atau anda dapat membuka model dari file JSON yang anda inginkan (wajib berisi
+                                definisi vertex (position) dan warna (color))
 
-                        <div class="inner-col-2 inner-card">
-                            <div class="h2">Animation</div>
-                            <div class="inner-flex-container">
-                                <div class="toggle-switch">
-                                    <input
-                                        type="checkbox"
-                                        id="switch-animation"
-                                    />
-                                    <label for="switch-animation"></label>
-                                </div>
-                                <div
-                                    class="on-off-label"
-                                    id="on-off-label-animation"
-                                >
-                                    OFF
-                                </div>
+                                2. Proyeksi
+                                Anda dapat mengubah jenis proyeksi dengan mengklik tombol orthographic, perspective,
+                                atau oblique. Pada proyeksi perspective anda dapat mengatur sempitnya sudut pandang
+                                dengan mengubah nilai field of view. Pada proyeksi oblique, anda dapat mengatur
+                                foreshortening factor dan juga sudut beta.
+
+                                3. Shading
+                                Anda dapat mengaktifkan pencahayaan dengan mengklik tombol shading.
+
+                                4. Rotasi, Translasi, dan Scaling
+                                Anda dapat mengubah rotasi, translasi, dan penskalaan model dengan mengubah nilai
+                                slider.
+
+                                5. Atur Kamera
+                                Anda dapat mengubah setelan kamera dengan mengubah nilai slider radius untuk mengatur
+                                jarak kamera dari objek, dan nilai slider angle untuk sudut kamera mengitari model.
+
+                                6. Save Model
+                                Anda dapat menyimpan model yang sedang ditampilkan dengan mengklik tombol save.
+
+                                7. Reset
+                                Anda dapat mengembalikan model dan transformasi ke posisi awal dengan mengklik tombol
+                                reset.
+
+                                8. Animation
+                                Anda dapat mengaktifkan animasi dengan mengklik tombol animation.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="inner-col-2 inner-card">
+                        <div class="h2">Animation</div>
+                        <div class="inner-flex-container">
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="switch-animation" />
+                                <label for="switch-animation"></label>
+                            </div>
+                            <div class="on-off-label" id="on-off-label-animation">
+                                OFF
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="help/bantuan.js"></script>
-        <script src="utils/utils.js"></script>
-        <script src="utils/mat.js"></script>
-        <script src="model/cube.js"></script>
-        <script src="model/takodachi.js"></script>
-        <script src="model/prism.js"></script>
-        <script src="proyeksi/perspective.js"></script>
-        <script src="proyeksi/shading.js"></script>
-        <script src="state/state.js"></script>
-        <script src="transformasi/translasi.js"></script>
-        <script src="transformasi/rotasi.js"></script>
-        <script src="transformasi/scaling.js"></script>
-        <script src="webgl/shader.js"></script>
-        <script src="webgl/program.js"></script>
-        <script src="webgl/buffer.js"></script>
-        <script src="utils/saveload.js"></script>
-        <script src="camera/camera.js"></script>
-        <script src="app.js"></script>
-        <script src="animation/animation.js"></script>
-    </body>
+    </div>
+    <script src="help/bantuan.js"></script>
+    <script src="utils/utils.js"></script>
+    <script src="utils/mat.js"></script>
+    <script src="model/cube.js"></script>
+    <script src="model/takodachi.js"></script>
+    <script src="model/prism.js"></script>
+    <script src="proyeksi/perspective.js"></script>
+    <script src="proyeksi/shading.js"></script>
+    <script src="state/state.js"></script>
+    <script src="transformasi/translasi.js"></script>
+    <script src="transformasi/rotasi.js"></script>
+    <script src="transformasi/scaling.js"></script>
+    <script src="webgl/shader.js"></script>
+    <script src="webgl/program.js"></script>
+    <script src="webgl/buffer.js"></script>
+    <script src="utils/saveload.js"></script>
+    <script src="camera/camera.js"></script>
+    <script src="app.js"></script>
+    <script src="animation/animation.js"></script>
+</body>
+
 </html>
