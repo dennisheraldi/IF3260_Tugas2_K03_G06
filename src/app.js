@@ -75,8 +75,9 @@ function drawScene() {
     var projectionMatrix = m4.orthographic(-1, 1, -1, 1, 1, -1);
 
     // TODO: Compute a matrix for the camera
-    var cameraMatrix = m4.translation(0, 0, cameraRadius);
+    var cameraMatrix = m4.identity();
     cameraMatrix = m4.yRotate(cameraMatrix, cameraAngleRadians);
+    cameraMatrix = m4.translate(cameraMatrix, 0, 0, cameraRadius);
     // Make a view matrix from the camera matrix.
     var viewMatrix = m4.inverse(cameraMatrix);
 
@@ -100,7 +101,6 @@ function drawScene() {
     worldMatrix = m4.zRotate(worldMatrix, degToRad(state.rotation.z));
 
     if (state.model_type === "loaded") {
-        var centerPoints = centerOfMass(state.model.position);
         worldMatrix = m4.translate(
             worldMatrix,
             state.center_points[0],
